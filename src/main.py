@@ -1,9 +1,16 @@
 from __future__ import annotations
 
 import sys
+from pathlib import Path
 
-from src.csv_reader import CsvError, read_value_column
-from src.summary import calculate_summary
+# Ensure project root is on sys.path so "import src..." works when running:
+# python src/main.py <file.csv>
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from src.csv_reader import CsvError, read_value_column  # noqa: E402
+from src.summary import calculate_summary  # noqa: E402
 
 
 def main(argv: list[str]) -> int:
